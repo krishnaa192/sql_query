@@ -17,6 +17,22 @@ FROM CITY;
 Note-To round off to specific digit we can use Round function as ROUND(value,n) n is the number of difit to be rounded.
 
 3-Sum and Round to 2-
+Query-
 select ROUND(SUM( LAT_N),2), ROUND(SUM(LONG_W),2) FROM  STATION ;
 4-Query LAN_W WHERE LAN_L is max and less that 137.2245 upto 4 decimal places.
 SELECT ROUND(LONG_W,4)  FROM STATION WHERE LAT_N=(SELECT MAX(LAT_N ) FROM  STATION WHERE LAT_N <137.2345);
+
+5-Consider  and  P1(a,b) and P2(c,d) to be two points on a 2D plane where 
+a happens to equal the minimum value in Northern Latitude (LAT_N in STATION).
+b happens to equal the minimum value in Western Longitude (LONG_W in STATION).
+c happens to equal the maximum value in Northern Latitude (LAT_N in STATION).
+d happens to equal the maximum value in Western Longitude (LONG_W in STATION).
+Query the Manhattan Distance between points  and  and round it to a scale of  decimal places.
+
+Query-
+SELECT ROUND(ABS(c.LAT_N - a.LAT_N) + ABS(d.LONG_W - b.LONG_W), 4) AS Manhattan_Distance
+FROM
+    (SELECT LAT_N FROM STATION ORDER BY LAT_N ASC LIMIT 1) AS a,  -- Point A: Min LAT_N
+    (SELECT LONG_W FROM STATION ORDER BY LONG_W ASC LIMIT 1) AS b, -- Point B: Min LONG_W
+    (SELECT LAT_N FROM STATION ORDER BY LAT_N DESC LIMIT 1) AS c,  -- Point C: Max LAT_N
+    (SELECT LONG_W FROM STATION ORDER BY LONG_W DESC LIMIT 1) AS d; -- Point D: Max LONG_W
