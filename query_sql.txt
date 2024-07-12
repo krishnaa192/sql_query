@@ -1,0 +1,12 @@
+ ## HackerRank(Top Earners)
+Finding the maximum product of months and salary among employees and counting how many employees have this maximum product
+
+SELECT 
+    MAX(months * salary),
+    COUNT(*)
+FROM 
+    Employee
+WHERE 
+    months * salary = (
+        SELECT MAX(months * salary) FROM Employee
+    );
