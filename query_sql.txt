@@ -1,6 +1,6 @@
- ## HackerRank(Top Earners)
+1-HackerRank(Top Earners)
 Finding the maximum product of months and salary among employees and counting how many employees have this maximum product
-
+Query-
 SELECT 
     MAX(months * salary),
     COUNT(*)
@@ -10,3 +10,13 @@ WHERE
     months * salary = (
         SELECT MAX(months * salary) FROM Employee
     );
+2-Average Population of all cities rounded to nearest Integer-
+SELECT FLOOR(AVG(POPULATION))
+FROM CITY;
+
+Note-To round off to specific digit we can use Round function as ROUND(value,n) n is the number of difit to be rounded.
+
+3-Sum and Round to 2-
+select ROUND(SUM( LAT_N),2), ROUND(SUM(LONG_W),2) FROM  STATION ;
+4-Query LAN_W WHERE LAN_L is max and less that 137.2245 upto 4 decimal places.
+SELECT ROUND(LONG_W,4)  FROM STATION WHERE LAT_N=(SELECT MAX(LAT_N ) FROM  STATION WHERE LAT_N <137.2345);
